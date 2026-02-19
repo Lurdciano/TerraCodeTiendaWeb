@@ -54,6 +54,9 @@
       -moz-osx-font-smoothing: grayscale;
       line-height: 1.45;
       padding: 0 16px 24px;
+      overflow-x: hidden;
+      /* Evitar scroll horizontal infinito */
+      width: 100%;
     }
 
     a {
@@ -487,55 +490,60 @@
       header.topbar {
         position: sticky;
         top: 0;
-        flex-direction: row;
-        padding: 8px 12px;
-        text-align: left;
+        flex-direction: column;
+        padding: 10px 12px;
+        align-items: center;
+        justify-content: center;
         gap: 8px;
-        border-radius: 0 0 12px 12px;
-        margin: 0 -10px;
-        width: calc(100% + 20px);
-        min-height: 60px;
-        max-height: 15vh;
-        overflow-y: auto;
+        border-radius: 0 0 16px 16px;
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 80px;
+        max-height: 18vh;
       }
 
       .brand {
-        flex-direction: row;
-        gap: 8px;
-        flex: 1;
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+        text-align: center;
       }
 
       .logo {
-        width: 38px;
-        height: 38px;
-        border-width: 1px;
+        width: 42px;
+        height: 42px;
+        border-width: 1.5px;
       }
 
       .brand h1 {
-        font-size: 15px;
+        font-size: 16px;
         line-height: 1;
       }
 
       .brand p {
         display: none;
-        /* Ocultar subtítulo en móvil para ahorrar espacio */
       }
 
       nav.nav {
         display: flex;
-        justify-content: flex-end;
-        flex-wrap: nowrap;
+        justify-content: center;
+        flex-wrap: wrap;
         gap: 4px;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 2px;
+        width: 100%;
       }
 
       nav.nav a {
-        padding: 4px 6px;
+        padding: 5px 8px;
         font-size: 11px;
-        white-space: nowrap;
         background: var(--glass);
+        border: 1px solid var(--surface-border);
+        border-radius: 8px;
+      }
+
+      nav.nav a[href="#pro"] {
+        display: none;
+        /* Eliminar Requisitos del header en móvil */
       }
 
       .module {
