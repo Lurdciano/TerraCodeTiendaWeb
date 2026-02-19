@@ -27,8 +27,8 @@
       --glass: rgba(255, 255, 255, 0.045);
       --radius: 16px;
       --glass-2: rgba(255, 255, 255, 0.025);
-      --shadow: 0 8px 32px rgba(0, 0, 0, 0.65);
-      --surface-border: rgba(255, 255, 255, 0.07);
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+      --surface-border: rgba(255, 255, 255, 0.1);
       --max-width: 1100px;
       --gap: 24px;
       --header-height: 110px;
@@ -296,15 +296,29 @@
 
     .media-placeholder {
       width: 100%;
-      height: 290px;
+      height: auto;
+      aspect-ratio: 16 / 10;
       border-radius: 10px;
       background: linear-gradient(90deg, rgba(163, 230, 53, 0.05), transparent);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--muted);
-      border: 1px solid var(--glass-2);
+      border: 1px solid var(--surface-border);
       overflow: hidden;
+      position: relative;
+    }
+
+    .media-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .media-placeholder img:hover {
+      transform: scale(1.05);
     }
 
     .badge {
@@ -356,8 +370,11 @@
 
     .modal-content {
       position: relative;
-      max-width: 92%;
-      max-height: 92vh
+      max-width: 96%;
+      max-height: 96vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     #modal-media img,
@@ -463,35 +480,119 @@
     }
 
     @media (max-width:920px) {
+      :root {
+        --header-height: auto;
+      }
+
+      header.topbar {
+        position: sticky;
+        top: 0;
+        flex-direction: row;
+        padding: 8px 12px;
+        text-align: left;
+        gap: 8px;
+        border-radius: 0 0 12px 12px;
+        margin: 0 -10px;
+        width: calc(100% + 20px);
+        min-height: 60px;
+        max-height: 15vh;
+        overflow-y: auto;
+      }
+
+      .brand {
+        flex-direction: row;
+        gap: 8px;
+        flex: 1;
+      }
+
+      .logo {
+        width: 38px;
+        height: 38px;
+        border-width: 1px;
+      }
+
+      .brand h1 {
+        font-size: 15px;
+        line-height: 1;
+      }
+
+      .brand p {
+        display: none;
+        /* Ocultar subtítulo en móvil para ahorrar espacio */
+      }
+
+      nav.nav {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        gap: 4px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 2px;
+      }
+
+      nav.nav a {
+        padding: 4px 6px;
+        font-size: 11px;
+        white-space: nowrap;
+        background: var(--glass);
+      }
+
       .module {
-        grid-template-columns: 1fr
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .hero {
+        padding: 24px;
+        text-align: center;
       }
 
       .hero-visual {
         max-width: 100%;
-        width: 100%
+        width: 100%;
       }
 
       .features {
-        grid-template-columns: 1fr
-      }
-
-      nav.nav {
-        display: none
+        grid-template-columns: 1fr;
       }
 
       body {
-        padding: 0 12px 18px
+        padding: 0 10px 20px;
       }
     }
 
     @media (max-width:640px) {
-      .hero {
-        padding: 24px 18px
+      .hero h2 {
+        font-size: 20px;
       }
 
       .hero h3 {
-        font-size: 26px
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .mini-dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .media-placeholder {
+        height: auto !important;
+        min-height: 200px;
+      }
+
+      .media-placeholder img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
       }
     }
 
@@ -508,6 +609,7 @@
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
       cursor: pointer;
       border: 2px solid var(--surface-border);
+      aspect-ratio: 16 / 9;
     }
 
     .video-wrapper img {
@@ -531,6 +633,15 @@
       font-size: 42px;
       box-shadow: 0 10px 30px rgba(163, 230, 53, 0.4);
       transition: all 0.3s ease;
+      z-index: 2;
+    }
+
+    @media (max-width: 640px) {
+      .play-overlay {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+      }
     }
 
     .video-wrapper:hover .play-overlay {
@@ -603,9 +714,8 @@
       <p class="desc">Vea cómo funciona TerraCodeTienda en tiempo real.</p>
 
       <div class="video-wrapper" id="video-trigger">
-        <div class="media-placeholder" style="height:480px;">
-          <!-- Aquí colocar la miniatura del video: <img src="images/miniatura_video.png" alt="Demo"> -->
-          <span><img src="images/ImgVideo.png" alt="Demo"></span>
+        <div class="media-placeholder" style="aspect-ratio: 16/9; border: none;">
+          <img src="images/ImgVideo.png" alt="Demo" class="no-lightbox">
         </div>
         <div class="play-overlay">▶</div>
       </div>
@@ -650,7 +760,7 @@
         </div>
         <div>
           <div class="media-placeholder">
-            <span><img src="images/Caja.png"></span>
+            <img src="images/Caja.png" alt="Módulo de Caja">
           </div>
         </div>
       </div>
@@ -678,7 +788,7 @@
         </div>
         <div>
           <div class="media-placeholder">
-            <span><img src="images/Resumen.png"></span>
+            <img src="images/Resumen.png" alt="Resumen de Ventas">
           </div>
         </div>
       </div>
@@ -705,7 +815,7 @@
         </div>
         <div>
           <div class="media-placeholder">
-            <span><img src="images/imgQR.png"></span>
+            <img src="images/imgQR.png" alt="Generación de QR">
           </div>
         </div>
       </div>
@@ -790,7 +900,7 @@
         modalMedia.innerHTML = '';
       }
 
-      document.querySelectorAll('.media-placeholder img').forEach(img => {
+      document.querySelectorAll('.media-placeholder img:not(.no-lightbox)').forEach(img => {
         img.style.cursor = 'zoom-in';
         img.addEventListener('click', function () {
           openModal(`<img src="${this.src}" style="max-width:100%; max-height:92vh; border-radius:14px; border:2px solid var(--accent-lime);">`);
