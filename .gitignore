@@ -1,0 +1,38 @@
+# Sistema operativo
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Archivos temporales y de depuración
+*.log
+*.tmp
+*.bak
+
+# Entornos y dependencias (en caso de agregarse herramientas de empaquetado)
+node_modules/
+dist/
+build/
+.cache/
+
+# Archivos locales de datos y respaldos generados
+backups/
+*.xlsx
+*.xls
+*.csv
