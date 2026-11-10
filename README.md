@@ -171,7 +171,7 @@ La landing page `index.html` incluye cabeceras de seguridad y optimizaciones:
 - 📧 **Correo Electrónico:** [lurdciano@gmail.com](mailto:lurdciano@gmail.com)
 - 💼 **LinkedIn:** [luciano-ruizdiaz](https://www.linkedin.com/in/luciano-ruizdiaz)
 - 🐙 **GitHub:** [@Lurdciano](https://github.com/Lurdciano)
-- 🌐 **Sitio Web Oficial:** [terracode.site](https://terracode.site/)
+- 🌐 **Sitio Web Oficial:** [terracode.com.ar](https://terracode.com.ar/)
 
 ---
 
